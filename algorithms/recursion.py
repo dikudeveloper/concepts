@@ -7,7 +7,7 @@ def fibonacci(n):
 
 
 def fibonacci_optimized(n):
-    """Memoized Dynamic Programming Algorithm"""
+    """Memoized Dynamic Programming Algorithm -- Top Down design"""
     if n in memo:
         return memo[n]
 
@@ -19,12 +19,13 @@ def fibonacci_optimized(n):
 
 
 def fibonacci_bottom_up(n):
-    """Bottom-Up Dynamic Programming Algorithm"""
+    """Bottom-Up Dynamic Programming Algorithm using Iteration"""
     for i in range(0, n+1):
         if i <= 1:
-            return n
+            f = i
         else:
-            bottom_up_table[i] = fibonacci_bottom_up(n-1) + fibonacci_bottom_up(n-2)
+            f = bottom_up_table[i-1] + bottom_up_table[i-2]
+        bottom_up_table[i] = f
     return bottom_up_table[n]
 
 
@@ -52,19 +53,19 @@ if __name__ == '__main__':
     bottom_up_table = {}
 
     start = time.time()
-    fib = fibonacci_optimized(20)
+    fib = fibonacci_optimized(40)
     end = time.time()
     time_delta = end - start
     print(fib, 'fibonacci_optimized(n) executed in {} seconds'.format(time_delta))
 
     start = time.time()
-    fib = fibonacci_bottom_up(20)
+    fib = fibonacci_bottom_up(40)
     end = time.time()
     time_delta = end - start
     print(fib, 'fibonacci_bottom_up(n) executed in {} seconds'.format(time_delta))
 
     start = time.time()
-    fib = fibonacci(20)
+    fib = fibonacci(40)
     end = time.time()
     time_delta = end - start
     print(fib, 'fibonacci(n) executed in {} seconds'.format(time_delta))
