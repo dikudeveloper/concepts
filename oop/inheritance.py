@@ -18,5 +18,5 @@ if __name__ == '__main__':
     b = B()
     c = C()
 
-    # print(a.func())
+    # print(b.func())
     print(c.func())
