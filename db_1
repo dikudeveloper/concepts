@@ -1,0 +1,57 @@
+
+############
+# Models:
+############
+
+# djangoapp/models.py
+
+
+class Book(models.Model):
+    name = models.CharField(max_length=30)
+
+
+
+class Author(models.Model):
+    name = models.CharField(max_length=50)
+    books = models.ManyToManyField(Book)
+
+    def __str__(self):
+        return "%s (%s)" % (
+            self.name,
+            ", ".join(book.name for book in self.books.all()),
+        )
+
+
+
+
+
+############
+# Views:
+############
+
+# djangoapp/views.py
+from models import Author
+
+
+def author_detail(request):
+    a = Author.objects.all()
+    return render(request, 'djangoapp/detail.html', {'authors': a})
+
+
+
+
+
+
+##############
+# Templates:
+##############
+
+# djangoapp/templates/djangoapp/author_detail.html
+
+{% for author in authors %}
+   
+   {{ author }}
+
+{% endfor %}
+
+
