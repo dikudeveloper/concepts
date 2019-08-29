@@ -15,5 +15,5 @@ class B(object):
 if __name__ == '__main__':
     ob = B()
     B.first(ob)
-    ob.first()
+    # ob.first()
 
