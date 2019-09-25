@@ -21,3 +21,14 @@ def minSum(num, k):
             counter += 1
         return sum(num)
 
+
+def minSum(num, k):
+    # Write your solution here
+    if (len(num) >=1 and len(num) <= 10**5) and (k>=1 and k<=10**7) and (0 not in num):
+        counter = 1
+        while counter <= k:
+            max_value = max(num)
+            new_value = ceil(max_value / 2)
+            num[num.index(max_value)] = new_value
+            counter += 1
+        return sum(num)
